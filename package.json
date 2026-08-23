@@ -1,0 +1,22 @@
+{
+  "private": true,
+  "name": "yoleo",
+  "description": "Yoleo — a browser extension for reading.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {},
+  "devDependencies": {
+    "extension": "^4.1.5"
+  },
+  "scripts": {
+    "dev": "extension dev",
+    "start": "extension start",
+    "build": "extension build",
+    "preview": "extension preview",
+    "build:chrome": "extension build --browser chrome",
+    "build:firefox": "extension build --browser firefox",
+    "build:edge": "extension build --browser edge"
+  },
+  "packageManager": "npm@10.9.2"
+}

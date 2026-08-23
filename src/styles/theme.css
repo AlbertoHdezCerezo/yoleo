@@ -1,0 +1,171 @@
+/* ============================================================
+   Yoleo theme — "Graphite" (Claude Design document 2a dark / 2b light)
+   ------------------------------------------------------------
+   Paper surfaces, ink borders, hard offset shadows (no blur),
+   radius 0 everywhere. Space Grotesk for UI text, IBM Plex Mono
+   for meta/labels. Dark mode is opt-in via a `.dark` class on a
+   root ancestor; semantic aliases re-point to the dark mapping.
+
+   Raw palette scales come straight from the design document.
+   Components should use the SEMANTIC tokens (page, surface, ink,
+   accent, …), not raw scale steps.
+   ============================================================ */
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Wipe Tailwind's default palette/typography/radius/shadows so
+     only the design document's tokens exist. */
+  --color-*: initial;
+  --font-*: initial;
+  --radius-*: initial;
+  --shadow-*: initial;
+  --text-*: initial;
+
+  /* ---- Palette ---------------------------------------------- */
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  /* paper — text & light surfaces */
+  --color-paper-50: #fafaf8;
+  --color-paper-100: #f4f4f2;
+  --color-paper-200: #efefec;
+
+  /* gray — neutrals, chrome & dark surfaces */
+  --color-gray-200: #d8d9d6;
+  --color-gray-300: #b9bbbe;
+  --color-gray-400: #909398;
+  --color-gray-600: #45484d;
+  --color-gray-700: #2e3033;
+  --color-gray-800: #232427;
+  --color-gray-900: #191a1c;
+
+  /* teal — accent, sync */
+  --color-teal-100: #ddeee9;
+  --color-teal-400: #5fb4a2;
+  --color-teal-600: #1f6f5e;
+  --color-teal-800: #1e3a34;
+
+  /* green — success, on device */
+  --color-green-100: #e2f1e2;
+  --color-green-400: #8fce8f;
+  --color-green-600: #1e7f4f;
+  --color-green-800: #1c3a28;
+
+  /* yellow — warning, pending */
+  --color-yellow-100: #f5ebcf;
+  --color-yellow-400: #e4c465;
+  --color-yellow-600: #8a6100;
+  --color-yellow-800: #3e2f09;
+
+  /* red — danger, destructive */
+  --color-red-100: #f9ecea;
+  --color-red-400: #e07a6b;
+  --color-red-600: #b4382a;
+  --color-red-800: #42211c;
+
+  /* ---- Typography -------------------------------------------- */
+  --font-sans: "Space Grotesk", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+
+  --text-h1: 28px;
+  --text-h1--line-height: 34px;
+  --text-h1--font-weight: 600;
+  --text-h1--letter-spacing: -0.02em;
+  --text-h2: 22px;
+  --text-h2--line-height: 28px;
+  --text-h2--font-weight: 600;
+  --text-h2--letter-spacing: -0.015em;
+  --text-h3: 18px;
+  --text-h3--line-height: 24px;
+  --text-h3--font-weight: 500;
+  --text-h3--letter-spacing: -0.01em;
+  --text-h4: 15px;
+  --text-h4--line-height: 20px;
+  --text-h4--font-weight: 600;
+  --text-h5: 12px;
+  --text-h5--line-height: 16px;
+  --text-h5--font-weight: 600;
+  --text-h5--letter-spacing: 0.1em;
+  --text-body: 14px;
+  --text-body--line-height: 22px;
+  --text-small: 12.5px;
+  --text-small--line-height: 19px;
+  --text-meta: 12px;
+  --text-meta--line-height: 20px;
+
+  /* ---- Control heights (lg 44 · md 38 · sm 32) ---------------- */
+  --spacing-control-lg: 44px;
+  --spacing-control-md: 38px;
+  --spacing-control-sm: 32px;
+}
+
+/* Semantic aliases — registered as colors/shadows so utilities like
+   tw:bg-page or tw:shadow-hard exist, but resolved through plain CSS
+   variables so `.dark` can re-point them. */
+@theme inline {
+  --color-page: var(--yl-page);
+  --color-surface: var(--yl-surface);
+  --color-surface-hover: var(--yl-surface-hover);
+  --color-ink: var(--yl-ink);
+  --color-ink-secondary: var(--yl-ink-secondary);
+  --color-ink-hint: var(--yl-ink-hint);
+  --color-border-passive: var(--yl-border-passive);
+  --color-border-interactive: var(--yl-border-interactive);
+  --color-accent: var(--yl-accent);
+  --color-accent-soft: var(--yl-accent-soft);
+  --color-success: var(--yl-success);
+  --color-success-soft: var(--yl-success-soft);
+  --color-warning: var(--yl-warning);
+  --color-warning-soft: var(--yl-warning-soft);
+  --color-danger: var(--yl-danger);
+  --color-danger-soft: var(--yl-danger-soft);
+
+  /* Hard offset shadows — no blur. Press = translate(2px,2px) and
+     step down to the press shadow. */
+  --shadow-hard: 4px 4px 0 var(--yl-shadow-color);
+  --shadow-hard-press: 2px 2px 0 var(--yl-shadow-color);
+}
+
+/* Light (design document 2b) — the default */
+:root {
+  --yl-page: #fafaf8;             /* paper-50  */
+  --yl-surface: #ffffff;          /* white     */
+  --yl-surface-hover: #efefec;    /* paper-200 */
+  --yl-ink: #191a1c;              /* gray-900  */
+  --yl-ink-secondary: #45484d;    /* gray-600  */
+  --yl-ink-hint: #909398;         /* gray-400  */
+  --yl-border-passive: #d8d9d6;   /* gray-200  */
+  --yl-border-interactive: #191a1c; /* gray-900 */
+  --yl-accent: #1f6f5e;           /* teal-600  */
+  --yl-accent-soft: #ddeee9;      /* teal-100  */
+  --yl-success: #1e7f4f;          /* green-600 */
+  --yl-success-soft: #e2f1e2;     /* green-100 */
+  --yl-warning: #8a6100;          /* yellow-600 */
+  --yl-warning-soft: #f5ebcf;     /* yellow-100 */
+  --yl-danger: #b4382a;           /* red-600   */
+  --yl-danger-soft: #f9ecea;      /* red-100   */
+  --yl-shadow-color: rgb(25 26 28 / 0.18); /* gray-900/18 */
+}
+
+/* Dark (design document 2a) — opt-in via .dark; accent & status
+   shift to the -400 steps, shadows are drawn in paper at 25%. */
+.dark {
+  --yl-page: #191a1c;             /* gray-900  */
+  --yl-surface: #232427;          /* gray-800  */
+  --yl-surface-hover: #2e3033;    /* gray-700  */
+  --yl-ink: #f4f4f2;              /* paper-100 */
+  --yl-ink-secondary: #b9bbbe;    /* gray-300  */
+  --yl-ink-hint: #909398;         /* gray-400  */
+  --yl-border-passive: #45484d;   /* gray-600  */
+  --yl-border-interactive: #f4f4f2; /* paper-100 */
+  --yl-accent: #5fb4a2;           /* teal-400  */
+  --yl-accent-soft: #1e3a34;      /* teal-800  */
+  --yl-success: #8fce8f;          /* green-400 */
+  --yl-success-soft: #1c3a28;     /* green-800 */
+  --yl-warning: #e4c465;          /* yellow-400 */
+  --yl-warning-soft: #3e2f09;     /* yellow-800 */
+  --yl-danger: #e07a6b;           /* red-400   */
+  --yl-danger-soft: #42211c;      /* red-800   */
+  --yl-shadow-color: rgb(244 244 242 / 0.25); /* paper-100/25 */
+}

@@ -1,3 +1,4 @@
+import '../styles/fonts.js'
 import './styles.css'
 import { Application } from '@hotwired/stimulus'
 

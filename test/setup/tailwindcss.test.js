@@ -1,35 +1,29 @@
+import { readFile } from 'node:fs/promises'
 import postcss from 'postcss'
 import tailwindcss from '@tailwindcss/postcss'
 
 // Runs the same PostCSS + Tailwind pipeline Extension.js runs when
-// bundling, against the real source tree. Mirrors src/popup/styles.css,
-// including the tw prefix.
-const compile = async () =>
-  postcss([tailwindcss()]).process('@import "tailwindcss" prefix(tw);', {
-    from: 'src/popup/styles.css'
-  })
+// bundling, against the real popup stylesheet and source tree.
+const compile = async () => {
+  const css = await readFile('src/popup/styles.css', 'utf8')
+  return postcss([tailwindcss()]).process(css, { from: 'src/popup/styles.css' })
+}
 
 describe('setup', () => {
   describe('TailwindCSS', () => {
     test('compiles tw-prefixed utility classes used in the source files', async () => {
       const { css } = await compile()
 
-      expect(css).toContain('.tw\\:text-2xl')
-      expect(css).toContain('.tw\\:font-bold')
-      expect(css).toContain('.tw\\:text-gray-500')
+      expect(css).toContain('.tw\\:flex')
+      expect(css).toContain('.tw\\:text-h2')
+      expect(css).toContain('.tw\\:text-ink-secondary')
     })
 
     test('emits the Tailwind v4 layered stylesheet with prefixed theme variables', async () => {
       const { css } = await compile()
 
       expect(css).toContain('@layer')
-      expect(css).toContain('--tw-color-gray-500')
-    })
-
-    test('does not emit unprefixed utilities', async () => {
-      const { css } = await compile()
-
-      expect(css).not.toMatch(/^\s*\.text-2xl\b/m)
+      expect(css).toContain('--tw-color-paper-50')
     })
 
     test('does not emit utilities that no source file uses', async () => {

@@ -26,6 +26,14 @@ npm run build:firefox
 npm run build:edge
 ```
 
+### test
+
+Run the Jest test suite:
+
+```bash
+npm test
+```
+
 ### preview
 
 Preview the production build in the browser:

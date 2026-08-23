@@ -7,9 +7,20 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this extension.</noscript>
-    <main class="tw:flex tw:min-w-64 tw:flex-col tw:items-center tw:gap-2 tw:p-6">
+    <main
+      data-controller="hello"
+      class="tw:flex tw:min-w-64 tw:flex-col tw:items-center tw:gap-2 tw:p-6"
+    >
       <h1 class="tw:text-2xl tw:font-bold">Yoleo</h1>
-      <p class="tw:text-sm tw:text-gray-500">A browser extension for reading.</p>
+      <p data-hello-target="output" class="tw:text-sm tw:text-gray-500">
+        A browser extension for reading.
+      </p>
+      <button
+        data-action="hello#greet"
+        class="tw:rounded tw:bg-gray-900 tw:px-3 tw:py-1 tw:text-sm tw:text-white"
+      >
+        Greet
+      </button>
     </main>
   </body>
   <script src="./scripts.js"></script>

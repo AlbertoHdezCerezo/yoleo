@@ -34,6 +34,15 @@ Run the Jest test suite:
 npm test
 ```
 
+### lint
+
+Run [StandardJS](https://standardjs.com) over the codebase:
+
+```bash
+npm run lint
+npm run lint:fix   # autofix
+```
+
 ### preview
 
 Preview the production build in the browser:

@@ -8,12 +8,20 @@
 
 ### dev
 
-Run the extension in development mode. Target a browser with `--browser`:
+Run the full development environment: the extension (hot reload in a
+fresh browser profile) plus Storybook component previews on
+[localhost:6006](http://localhost:6006):
 
 ```bash
 npm run dev
-npm run dev -- --browser=firefox
-npm run dev -- --browser=edge
+```
+
+Each side can also run alone. Target a browser with `--browser`:
+
+```bash
+npm run dev:extension
+npm run dev:extension -- --browser=firefox
+npm run dev:storybook
 ```
 
 ### build

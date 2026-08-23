@@ -8,6 +8,7 @@
   "devDependencies": {
     "@storybook/html-vite": "^10.5.10",
     "@tailwindcss/postcss": "^4.3.3",
+    "concurrently": "^10.0.5",
     "extension": "^4.1.5",
     "jest": "^30.4.2",
     "jest-environment-jsdom": "^30.4.1",
@@ -18,7 +19,7 @@
     "vite": "^8.2.2"
   },
   "scripts": {
-    "dev": "extension dev",
+    "dev": "concurrently -n extension,storybook -c blue,magenta \"npm:dev:extension\" \"npm:dev:storybook\"",
     "start": "extension start",
     "build": "extension build",
     "preview": "extension preview",
@@ -29,7 +30,9 @@
     "lint": "standard",
     "lint:fix": "standard --fix",
     "storybook": "storybook dev -p 6006",
-    "storybook:build": "storybook build"
+    "storybook:build": "storybook build",
+    "dev:extension": "extension dev",
+    "dev:storybook": "storybook dev -p 6006 --no-open"
   },
   "packageManager": "npm@10.9.2",
   "standard": {

@@ -1,8 +1,11 @@
 import { Application } from '@hotwired/stimulus'
-import HelloController from './controllers/hello_controller.js'
 
-export const startApplication = () => {
+// Starts a Stimulus application with the given controller definitions
+// ([{ identifier, controllerConstructor }]). The popup passes the
+// bundler-discovered definitions from components/; tests pass
+// filesystem-discovered ones — both go through the same loading path.
+export const startApplication = (controllerDefinitions = []) => {
   const application = Application.start()
-  application.register('hello', HelloController)
+  application.load(controllerDefinitions)
   return application
 }

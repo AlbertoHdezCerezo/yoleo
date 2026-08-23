@@ -2,6 +2,7 @@
  * @jest-environment jsdom
  */
 import { startApplication } from '../../src/popup/application.js'
+import { loadControllerDefinitions } from '../support/controller_definitions.js'
 
 const nextFrame = () => new Promise(resolve => setTimeout(resolve, 0))
 
@@ -16,7 +17,7 @@ describe('setup', () => {
           <button data-action="hello#greet">Greet</button>
         </main>
       `
-      application = startApplication()
+      application = startApplication(await loadControllerDefinitions())
       await nextFrame()
     })
 

@@ -12,7 +12,8 @@ Open a pull request for the current branch following the project's conventions.
 1. Make sure all intended changes are committed and the branch is pushed to `origin`.
 2. Verify the work before opening the PR: run the build and (once available) tests and linter. Mention the verification performed in the PR body.
 3. Open the PR with `gh pr create` against `main` (the default branch — not `master`).
-4. Assign the PR to `AlbertoHdezCerezo` for review (`--assignee AlbertoHdezCerezo`).
+4. Always assign the PR to `AlbertoHdezCerezo` for review (`--assignee AlbertoHdezCerezo`).
+5. Always apply the type label matching the change (see **Labels** below).
 
 ## PR title
 
@@ -31,14 +32,16 @@ Always fill in the repository template (`.github/PULL_REQUEST_TEMPLATE.md`):
 
 ```markdown
 ## What
-<What is the change the PR introduces about>
+<!-- What is the change the PR introduces about -->
 
 ## Why
-<Why do we need to introduce this change>
+<!-- Why do we need to introduce this change -->
 
 ## How
-<Summarized insight on changes introduced to achieve goal>
+<!-- Summarized insight on changes introduced to achieve goal -->
 ```
+
+The placeholders are HTML comments: they guide whoever writes the PR in the editor but stay hidden in the rendered description. Replace them with real content; leaving them in is harmless but sloppy.
 
 Guidelines per section:
 
@@ -50,7 +53,15 @@ Add anything the reviewer must decide or be warned about (deviations from the is
 
 ## Labels
 
-- Add `project-setup` for setup/tooling PRs (matches the issue label).
+Every PR always gets exactly one type label, matching its title prefix:
+
+- `chore` — configuration topics (tooling, dependencies, project setup)
+- `enhancement` — new features and improvements
+- `fix` — bugfixes
+
+Additionally:
+
+- Add `project-setup` when the PR belongs to a `project-setup`-labeled issue.
 - Do **not** add the `run-ci` label when creating the PR — CI runs are triggered manually by the reviewer by adding that label.
 
 ## Scope

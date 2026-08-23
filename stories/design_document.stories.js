@@ -86,53 +86,35 @@ const typographySection = () => `
 `
 
 const spacingSection = () => `
-  ${sectionTitle('03 · Spacing · Borders · Shadows')}
-  <div class="tw:grid tw:grid-cols-2 tw:gap-6">
-    <div class="tw:flex tw:flex-col tw:gap-2">
-      ${SPACING.map(([w, label]) => `
-        <div class="tw:flex tw:items-center tw:gap-3">
-          <div class="${w} tw:h-3.5 tw:bg-accent"></div>
-          <span class="tw:font-mono tw:text-meta tw:text-ink-secondary">${label}</span>
-        </div>
-      `).join('')}
-    </div>
-    <div class="tw:text-small tw:text-ink-secondary tw:leading-relaxed">
-      Corners: <strong class="tw:text-ink">radius 0 everywhere</strong><br>
-      Section &amp; card rule: <strong class="tw:text-ink">2px solid border-interactive</strong> (top edge)<br>
-      Interactive border: <strong class="tw:text-ink">1px solid border-interactive</strong><br>
-      Passive border: 1px solid border-passive<br>
-      Shadow: <strong class="tw:text-ink">tw:shadow-hard</strong> · 4px 4px 0 · no blur<br>
-      Press: translate(2px,2px) + <strong class="tw:text-ink">tw:shadow-hard-press</strong><br>
-      Controls: lg 44 · md 38 · sm 32 px tall
-    </div>
+  ${sectionTitle('03 · Spacing')}
+  <div class="tw:flex tw:flex-col tw:gap-2">
+    ${SPACING.map(([w, label]) => `
+      <div class="tw:flex tw:items-center tw:gap-3">
+        <div class="${w} tw:h-3.5 tw:bg-accent"></div>
+        <span class="tw:font-mono tw:text-meta tw:text-ink-secondary">${label}</span>
+      </div>
+    `).join('')}
   </div>
 `
 
-const button = (classes, label) => `
-  <button class="tw:h-control-md tw:px-4 tw:font-sans tw:font-semibold tw:text-body tw:border tw:shadow-hard tw:cursor-pointer tw:active:translate-x-0.5 tw:active:translate-y-0.5 tw:active:shadow-hard-press ${classes}">${label}</button>
+const specimen = (cardClasses, label, note) => `
+  <div class="tw:flex tw:flex-col tw:gap-2">
+    <div class="${cardClasses} tw:bg-surface tw:p-4 tw:w-52 tw:h-24 tw:flex tw:items-center tw:justify-center tw:text-small tw:text-ink-secondary">${label}</div>
+    <span class="tw:font-mono tw:text-meta tw:text-ink-hint">${note}</span>
+  </div>
 `
 
-const buttonsSection = () => `
-  ${sectionTitle('04 · Buttons')}
-  <div class="tw:flex tw:flex-col tw:gap-4">
-    <div class="tw:flex tw:flex-wrap tw:items-center tw:gap-4">
-      ${button('tw:bg-border-interactive tw:text-page tw:border-border-interactive', 'Primary')}
-      ${button('tw:bg-surface tw:text-ink tw:border-border-interactive', 'Outline')}
-      ${button('tw:bg-accent tw:text-page tw:border-accent', 'Accent')}
-      ${button('tw:bg-surface tw:text-danger tw:border-danger', 'Danger')}
-      <button class="tw:h-control-md tw:px-3.5 tw:font-sans tw:font-semibold tw:text-body tw:text-ink-secondary tw:border tw:border-transparent tw:cursor-pointer tw:hover:bg-surface-hover">Ghost</button>
-    </div>
-    <div class="tw:flex tw:flex-wrap tw:items-center tw:gap-4">
-      <button class="tw:h-control-lg tw:px-5 tw:font-sans tw:font-semibold tw:bg-border-interactive tw:text-page tw:border tw:border-border-interactive tw:shadow-hard tw:cursor-pointer">lg 44</button>
-      <button class="tw:h-control-md tw:px-4 tw:font-sans tw:font-semibold tw:bg-border-interactive tw:text-page tw:border tw:border-border-interactive tw:shadow-hard tw:cursor-pointer">md 38</button>
-      <button class="tw:h-control-sm tw:px-3 tw:font-sans tw:font-semibold tw:text-small tw:bg-border-interactive tw:text-page tw:border tw:border-border-interactive tw:shadow-hard tw:cursor-pointer">sm 32</button>
-    </div>
-    <div class="tw:flex tw:flex-wrap tw:items-center tw:gap-3">
-      <span class="tw:font-mono tw:text-h5 tw:uppercase tw:px-2 tw:py-1 tw:bg-success-soft tw:text-success">on device</span>
-      <span class="tw:font-mono tw:text-h5 tw:uppercase tw:px-2 tw:py-1 tw:bg-warning-soft tw:text-warning">pending</span>
-      <span class="tw:font-mono tw:text-h5 tw:uppercase tw:px-2 tw:py-1 tw:bg-danger-soft tw:text-danger">failed</span>
-      <span class="tw:font-mono tw:text-h5 tw:uppercase tw:px-2 tw:py-1 tw:bg-accent-soft tw:text-accent">syncing</span>
-    </div>
+const bordersSection = () => `
+  ${sectionTitle('04 · Borders & Box shadows')}
+  <div class="tw:flex tw:flex-wrap tw:gap-8 tw:items-start">
+    ${specimen('tw:border tw:border-border-passive', 'Passive', '1px border-passive · dividers, quiet cards')}
+    ${specimen('tw:border tw:border-border-interactive', 'Interactive', '1px border-interactive · anything clickable')}
+    ${specimen('tw:border-t-2 tw:border-border-interactive', 'Section rule', '2px top edge · sections & cards')}
+    ${specimen('tw:border tw:border-border-interactive tw:shadow-hard', 'Raised', 'shadow-hard · 4px 4px 0 · no blur')}
+    ${specimen('tw:border tw:border-border-interactive tw:shadow-hard-press tw:translate-x-0.5 tw:translate-y-0.5', 'Pressed', 'translate(2px,2px) + shadow-hard-press · 2px 2px 0')}
+  </div>
+  <div class="tw:text-small tw:text-ink-secondary tw:mt-6">
+    Corners: <strong class="tw:text-ink">radius 0 everywhere</strong> — the radius scale is removed from the theme, so rounded utilities don't exist.
   </div>
 `
 
@@ -146,7 +128,7 @@ const document_ = (variant) => `
       ${paletteSection()}
       ${typographySection()}
       ${spacingSection()}
-      ${buttonsSection()}
+      ${bordersSection()}
     </div>
   </div>
 `

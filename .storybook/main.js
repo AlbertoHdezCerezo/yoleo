@@ -1,0 +1,8 @@
+/** @type {import('@storybook/html-vite').StorybookConfig} */
+export default {
+  framework: '@storybook/html-vite',
+  stories: [
+    '../stories/**/*.stories.js',
+    '../components/**/*.stories.js'
+  ]
+}

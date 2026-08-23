@@ -6,13 +6,16 @@
   "license": "MIT",
   "type": "module",
   "devDependencies": {
+    "@storybook/html-vite": "^10.5.10",
     "@tailwindcss/postcss": "^4.3.3",
     "extension": "^4.1.5",
     "jest": "^30.4.2",
     "jest-environment-jsdom": "^30.4.1",
     "postcss": "^8.5.26",
     "standard": "^17.1.2",
-    "tailwindcss": "^4.3.3"
+    "storybook": "^10.5.10",
+    "tailwindcss": "^4.3.3",
+    "vite": "^8.2.2"
   },
   "scripts": {
     "dev": "extension dev",
@@ -24,12 +27,17 @@
     "build:edge": "extension build --browser edge",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest",
     "lint": "standard",
-    "lint:fix": "standard --fix"
+    "lint:fix": "standard --fix",
+    "storybook": "storybook dev -p 6006",
+    "storybook:build": "storybook build"
   },
   "packageManager": "npm@10.9.2",
   "standard": {
     "env": [
       "jest"
+    ],
+    "ignore": [
+      "storybook-static/"
     ]
   },
   "dependencies": {
